@@ -1,0 +1,130 @@
+/* LoginForm.css */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #021c33;
+}
+
+.login-box {
+  display: flex;
+  width: 850px;
+  height: 500px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-section {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.security-section {
+  flex: 1;
+  background: linear-gradient(to bottom, #001e3c, #002a4d);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.security-icon {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.planet {
+  color: #00bfff;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.guard {
+  color: #ffd700;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.login-header {
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: relative;
+} 
+
+.velox-logo {
+   width: 150px;         /* Shrink width as per your design */
+  height: 80px;         /* Maintain aspect ratio */
+  object-fit: contain;
+  display: block;
+    margin: 0;            /* removes margin */
+  padding: 0;  
+  object-fit: contain;
+  size: 10px;
+}
+
+input {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.submit-btn {
+  background-color: #6c63ff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.reset-btn {
+  background-color: #ffc107;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.message {
+  margin-top: 10px;
+  color: red;
+}
+
+.footer-text {
+  font-size: 12px;
+  position: absolute;
+  bottom: 10px;
+  left: 40px;
+}

@@ -1,0 +1,127 @@
+/* CartItems.css */
+
+.cart-container {
+  display: flex;              /* Make children (cards) go side by side */
+  flex-wrap: wrap;            /* Allow wrapping to next line */
+  gap: 20px;                  /* Add space between cards */
+  padding: 20px;
+  background-color: #f2f2f2;
+  justify-content: center;    /* Center cards horizontally */
+}
+
+.cart-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  width: 220px;               /* Fixed width to make cards align */
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.book-author {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.book-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.book-price {
+  font-size: 16px;
+  color: green;
+  margin: 4px 0;
+}
+
+.book-quantity,
+.book-total {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+/* ✅ Button row: holds quantity buttons on left and remove button on right */
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+/* ✅ Left side buttons (+ and -) */
+.qty-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.qty-buttons button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.qty-buttons button:hover {
+  background-color: #388e3c;
+}
+
+/* ✅ Right side Remove button */
+.remove-button button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.remove-button button:hover {
+  background-color: #c62828;
+}
+/* Wrapper that contains the Clear Cart button and all cards */
+.cart-wrapper {
+  padding: 20px;
+  margin-bottom: 100px;
+}
+
+/* Clear Cart button styling */
+.clear-cart-btn {
+  background-color: #dc3545;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px; /* Spacing between button and cards */
+}
+
+.clear-cart-btn:hover {
+  background-color: #c82333;
+}
+
+
