@@ -22,6 +22,8 @@ public class JwtUtil {
 	
 	private Key key;
 	
+	//this annotation is used for methods that needs to be run automatically after an obj is fullu created & dependencies add.
+	//but runs before the application starts accepting the request.
 	@PostConstruct
 	public void init() {
 		this.key = Keys.hmacShaKeyFor(SECRET.getBytes());
