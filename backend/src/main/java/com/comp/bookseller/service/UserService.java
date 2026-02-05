@@ -21,8 +21,12 @@ public class UserService {
 	private JwtUtil jwtUtil;
 
 	public RegisterResponse registerUser(RegisterRequest registerRequest) {
-		String dbResponse = dao.registerUser(registerRequest.getEmail(),registerRequest.getPassword());
-		return new RegisterResponse(dbResponse);
+		User dbResponse = dao.registerUser(registerRequest.getEmail(),registerRequest.getPassword());
+		if(dbResponse!=null) {
+			return new RegisterResponse("Registration successfull");
+		}
+		return new RegisterResponse("Registration Failed");
+		
 	}
 
 	public LoginResponse loginUser(LoginRequest loginRequest) {

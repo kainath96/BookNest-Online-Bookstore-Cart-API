@@ -15,16 +15,14 @@ public class UserDao {
 	@Autowired 
 	private UserRepo repo;
 
-	public String registerUser(String email,String password) {
+	public User registerUser(String email,String password) {
 		User dbUser = repo.findUserByEmailAndPassword(email,password);
-		System.out.println("in user daooo"+ dbUser);
-		if(dbUser!=null) {
-			return "Email Already Exists";
+		if(dbUser==null) {
+			User user = new User(email,password,"USER");
+			repo.save(user);
+			return user;
 		}
-		User user = new User(email,password,"User");
-		System.out.println("in dao after setrole");
-		repo.save(user);
-		return "Registration successfull";
+		return null;
 	}
 
 	public User loginUser(String email, String password) {
