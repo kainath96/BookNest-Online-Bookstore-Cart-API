@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.comp.bookseller.dto.User;
+import com.comp.bookseller.dto.LoginRequest;
+import com.comp.bookseller.dto.LoginResponse;
+import com.comp.bookseller.dto.RegisterRequest;
+import com.comp.bookseller.dto.RegisterResponse;
+import com.comp.bookseller.entity.User;
 import com.comp.bookseller.service.UserService;
 import com.comp.bookseller.util.JwtUtil;
 
@@ -27,28 +31,17 @@ public class UserController {
 	private JwtUtil jwtUtil;
 	
 	@PostMapping("/register")
-	public String registerUser(@RequestBody User user) {
-		return service.registerUser(user);
+	public RegisterResponse registerUser(@RequestBody RegisterRequest registerRequest ) {
+		System.out.println("user reached till controller");
+		return service.registerUser(registerRequest);
 	}
 	
 	@PostMapping("/login")
-	public String loginUser(@RequestBody User user) {
-		String userString = service.loginUser(user);
-		System.out.println("hellloooooooooo"+userString);
-		return userString;
+	public LoginResponse loginUser(@RequestBody LoginRequest loginRequest) {
+		LoginResponse loginResponse = service.loginUser(loginRequest);
+		System.out.println("hellloooooooooo"+loginResponse);
+		return loginResponse;
 	}
 	
-	@GetMapping("/validate")
-	public String validateToken(@RequestHeader("Authorization") String authHeader, HttpServletResponse response) {
-	    String token = authHeader.replace("Bearer ", ""); // remove "Bearer " prefix
-	    String result = jwtUtil.validateToken(token);
-	    if (result.equals("Token expired")) {
-	        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401
-	        return result;
-	    } else if (result.equals("Invalid token")) {
-	        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401
-	        return result;
-	    }
-	    return "Token is valid"+result;
-	}
+	
 }

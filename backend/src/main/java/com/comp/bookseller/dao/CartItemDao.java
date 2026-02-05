@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.comp.bookseller.dto.Book;
-import com.comp.bookseller.dto.CartItem;
+import com.comp.bookseller.entity.Book;
+import com.comp.bookseller.entity.CartItem;
 import com.comp.bookseller.repo.CartRepo;
 
 @Repository

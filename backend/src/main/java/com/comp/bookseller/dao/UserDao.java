@@ -3,11 +3,10 @@ package com.comp.bookseller.dao;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import com.comp.bookseller.config.SecurityBeans;
-import com.comp.bookseller.dto.User;
+import com.comp.bookseller.entity.User;
 import com.comp.bookseller.repo.UserRepo;
 
 @Repository
@@ -15,26 +14,22 @@ public class UserDao {
 	
 	@Autowired 
 	private UserRepo repo;
-	
-	@Autowired
-	BCryptPasswordEncoder passwordEncode;
 
-	public String registerUser(User user) {
-		User dbUser = repo.getUserByEmail(user.getEmail());
+	public String registerUser(String email,String password) {
+		User dbUser = repo.findUserByEmailAndPassword(email,password);
+		System.out.println("in user daooo"+ dbUser);
 		if(dbUser!=null) {
 			return "Email Already Exists";
 		}
-		user.setRole("USER");
-		
-		String encodedPassword = passwordEncode.encode(user.getPassword());
-		user.setPassword(encodedPassword);
+		User user = new User(email,password,"User");
+		System.out.println("in dao after setrole");
 		repo.save(user);
 		return "Registration successfull";
 	}
 
 	public User loginUser(String email, String password) {
-		User dbUser = repo.getUserByEmail(email);
-		if(dbUser!=null && passwordEncode.matches(password, dbUser.getPassword())) {
+		User dbUser = repo.findUserByEmailAndPassword(email, password);
+		if(dbUser!=null){
 			System.out.println("User from DB: " + dbUser);
 			return dbUser;
 		}

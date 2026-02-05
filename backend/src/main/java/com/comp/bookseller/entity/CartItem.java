@@ -1,4 +1,4 @@
-package com.comp.bookseller.dto;
+package com.comp.bookseller.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

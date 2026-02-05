@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.comp.bookseller.dao.UserDao;
-import com.comp.bookseller.dto.User;
+import com.comp.bookseller.dto.LoginRequest;
+import com.comp.bookseller.dto.LoginResponse;
+import com.comp.bookseller.dto.RegisterRequest;
+import com.comp.bookseller.dto.RegisterResponse;
+import com.comp.bookseller.entity.User;
 import com.comp.bookseller.util.JwtUtil;
 
 @Service
@@ -16,20 +20,20 @@ public class UserService {
 	@Autowired
 	private JwtUtil jwtUtil;
 
-	public String registerUser(User user) {
-		return dao.registerUser(user);
+	public RegisterResponse registerUser(RegisterRequest registerRequest) {
+		String dbResponse = dao.registerUser(registerRequest.getEmail(),registerRequest.getPassword());
+		return new RegisterResponse(dbResponse);
 	}
 
-	public String loginUser(User user) {
-		User dbUser = dao.loginUser(user.getEmail(),user.getPassword());
+	public LoginResponse loginUser(LoginRequest loginRequest) {
+		User dbUser = dao.loginUser(loginRequest.getEmail(), loginRequest.getPassword());
 		if(dbUser!=null) {
-			String loginToken = jwtUtil.generateToken(dbUser.getEmail());
-			System.out.println("hiiiiiiiiiiii"+dbUser);
-			return "{\"message\":\"Login successful\", \"token\":\"" + loginToken + "\"}";
-        } else {
-            return "{\"message\":\"Login failed\"}";
-        
+			String generatedToken = jwtUtil.generateToken(dbUser.getEmail());
+			return new LoginResponse("Login Successfull",generatedToken);
+		}else {
+			return new LoginResponse("Login Failed", null);
 		}
+		
 	}
 
 }

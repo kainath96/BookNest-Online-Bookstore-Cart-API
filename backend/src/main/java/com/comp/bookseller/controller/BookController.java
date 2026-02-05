@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.comp.bookseller.dto.Book;
+import com.comp.bookseller.entity.Book;
 import com.comp.bookseller.service.BookService;
 
 @RestController

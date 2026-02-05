@@ -1,4 +1,4 @@
-package com.comp.bookseller.dto;
+package com.comp.bookseller.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +19,6 @@ public class Book {
 	private String imageUrl;
 	
 	public Book() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Book(long bookId, String title, String author, double price, String description) {

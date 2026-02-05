@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.comp.bookseller.dao.CartItemDao;
-import com.comp.bookseller.dto.CartItem;
+import com.comp.bookseller.entity.CartItem;
 
 @Service
 public class CartItemService {
@@ -19,12 +19,10 @@ public class CartItemService {
 	}
 
 	public List<CartItem> getCart() {
-		// TODO Auto-generated method stub
 		return cartDao.getCart();
 	}
 
 	public String clearCart() {
-		// TODO Auto-generated method stub
 		return cartDao.clearCart();
 	}
 

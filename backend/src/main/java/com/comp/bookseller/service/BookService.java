@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.comp.bookseller.dao.BookDao;
-import com.comp.bookseller.dto.Book;
+import com.comp.bookseller.entity.Book;
 
 @Service
 public class BookService {

@@ -1,4 +1,4 @@
-package com.comp.bookseller.dto;
+package com.comp.bookseller.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,12 +18,10 @@ public class User {
 	private String role;
 	
 	public User() {
-		// TODO Auto-generated constructor stub
 	}
 	
-	public User(long id, String email, String password, String role) {
+	public User(String email, String password, String role) {
 		super();
-		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.role = role;
@@ -31,9 +29,7 @@ public class User {
 	public long getId() {
 		return id;
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	public String getEmail() {
 		return email;
 	}

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.comp.bookseller.dto.Book;
+import com.comp.bookseller.entity.Book;
 import com.comp.bookseller.repo.BookRepo;
 
 @Repository
