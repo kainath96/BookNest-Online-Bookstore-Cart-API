@@ -1,6 +1,7 @@
 package com.comp.bookseller.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,12 +34,30 @@ public class UserController {
 	
 	@PostMapping("/register")
 	public ResponseEntity<RegisterResponse> registerUser(@RequestBody RegisterRequest registerRequest ) {
-		return service.registerUser(registerRequest);
+		RegisterResponse response  = service.registerUser(registerRequest);
+		if(response.isRegisterSuccess()) {
+			return ResponseEntity
+					.status(HttpStatus.ACCEPTED)
+					.body(response);
+		}
+		else {
+			return ResponseEntity
+					.status(HttpStatus.CONFLICT)
+					.body(response);
+		}
 	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest) {
-		return service.loginUser(loginRequest);
+		LoginResponse loginResponse = service.loginUser(loginRequest);
+		if(loginResponse.getToken()!=null) {
+			return ResponseEntity
+					.status(HttpStatus.OK)
+					.body(loginResponse);
+		}
+		return ResponseEntity
+				.status(HttpStatus.UNAUTHORIZED)
+				.body(loginResponse);
 	}
 	
 	
