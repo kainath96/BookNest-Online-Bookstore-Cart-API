@@ -1,6 +1,8 @@
 package com.comp.bookseller.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.comp.bookseller.dao.UserDao;
@@ -20,22 +22,33 @@ public class UserService {
 	@Autowired
 	private JwtUtil jwtUtil;
 
-	public RegisterResponse registerUser(RegisterRequest registerRequest) {
-		User dbResponse = dao.registerUser(registerRequest.getEmail(),registerRequest.getPassword());
+	public ResponseEntity<RegisterResponse> registerUser(RegisterRequest registerRequest) {
+		User dbResponse = dao.registerUser(
+				registerRequest.getEmail(),
+				registerRequest.getPassword());
+		
 		if(dbResponse!=null) {
-			return new RegisterResponse("Registration successfull");
+			return ResponseEntity
+					.status(HttpStatus.CREATED)
+					.body(new RegisterResponse("Registration Successfull"));
 		}
-		return new RegisterResponse("Registration Failed");
+		return ResponseEntity
+				.status(HttpStatus.CONFLICT)
+				.body(new RegisterResponse("Registration Failed:Email Already Exist"));
 		
 	}
 
-	public LoginResponse loginUser(LoginRequest loginRequest) {
+	public ResponseEntity<LoginResponse> loginUser(LoginRequest loginRequest) {
 		User dbUser = dao.loginUser(loginRequest.getEmail(), loginRequest.getPassword());
 		if(dbUser!=null) {
 			String generatedToken = jwtUtil.generateToken(dbUser.getEmail());
-			return new LoginResponse("Login Successfull",generatedToken);
+			return ResponseEntity
+					.status(HttpStatus.OK)
+					.body(new LoginResponse("Login Successfull", generatedToken));
 		}else {
-			return new LoginResponse("Login Failed", null);
+			return ResponseEntity
+					.status(HttpStatus.UNAUTHORIZED)
+					.body(new LoginResponse("Login Failed", null));
 		}
 		
 	}

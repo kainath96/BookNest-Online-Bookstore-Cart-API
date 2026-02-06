@@ -1,6 +1,7 @@
 package com.comp.bookseller.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,16 +32,13 @@ public class UserController {
 	private JwtUtil jwtUtil;
 	
 	@PostMapping("/register")
-	public RegisterResponse registerUser(@RequestBody RegisterRequest registerRequest ) {
-		System.out.println("user reached till controller");
+	public ResponseEntity<RegisterResponse> registerUser(@RequestBody RegisterRequest registerRequest ) {
 		return service.registerUser(registerRequest);
 	}
 	
 	@PostMapping("/login")
-	public LoginResponse loginUser(@RequestBody LoginRequest loginRequest) {
-		LoginResponse loginResponse = service.loginUser(loginRequest);
-		System.out.println("hellloooooooooo"+loginResponse);
-		return loginResponse;
+	public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest) {
+		return service.loginUser(loginRequest);
 	}
 	
 	
