@@ -9,6 +9,8 @@ import com.comp.bookseller.dto.LoginResponse;
 import com.comp.bookseller.dto.RegisterRequest;
 import com.comp.bookseller.dto.RegisterResponse;
 import com.comp.bookseller.entity.User;
+import com.comp.bookseller.exception.EmailAlreadyExistException;
+import com.comp.bookseller.exception.InvalidLoginCredentialsException;
 import com.comp.bookseller.util.JwtUtil;
 
 @Service
@@ -25,8 +27,7 @@ public class UserService {
 		if(dbResponse!=null) {
 			return new RegisterResponse("Registration successfull",true);
 		}
-		return new RegisterResponse("Registration Failed",false);
-		
+		 throw new EmailAlreadyExistException("Email Already Exist");
 	}
 
 	public LoginResponse loginUser(LoginRequest loginRequest) {
@@ -35,7 +36,7 @@ public class UserService {
 			String generatedToken = jwtUtil.generateToken(dbUser.getEmail());
 			return new LoginResponse("Login Successfull",generatedToken);
 		}else {
-			return new LoginResponse("Login Failed", null);
+			throw new InvalidLoginCredentialsException("Invalid email or password");
 		}
 		
 	}
