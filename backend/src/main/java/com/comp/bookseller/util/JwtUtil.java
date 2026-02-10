@@ -38,21 +38,19 @@ public class JwtUtil {
 	}
 	
 	
-	 public String validateToken(String token) {
-	        try {
-	            Jws<Claims> claims = Jwts.parserBuilder()
-	                    .setSigningKey(key)
-	                    .build()
-	                    .parseClaimsJws(token);
-
-	            return claims.getBody().getSubject(); // valid: return email
-	        } catch (ExpiredJwtException e) {
-	            return "Token expired";
-	        } catch (JwtException e) {
-	            return "Invalid token";
-	        }
+	 public void validateToken(String token) {
+	        parseClaims(token);
 	    }
 	 
+	public String extractEmail(String token) {
+		return parseClaims(token).getBody().getSubject();
+	}
 	
+	private Jws<Claims> parseClaims(String token) {
+		return Jwts.parserBuilder()
+		.setSigningKey(key)
+		.build()
+		.parseClaimsJws(token);
+	}
 	 
 }
