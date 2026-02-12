@@ -16,6 +16,8 @@ import com.comp.bookseller.dto.RegisterResponse;
 import com.comp.bookseller.service.UserService;
 import com.comp.bookseller.util.JwtUtil;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/user")
@@ -27,7 +29,7 @@ public class UserController {
 	
 	
 	@PostMapping("/register")
-	public ResponseEntity<RegisterResponse> registerUser(@RequestBody RegisterRequest registerRequest ) {
+	public ResponseEntity<RegisterResponse> registerUser(@Valid @RequestBody RegisterRequest registerRequest ) {
 		RegisterResponse response  = service.registerUser(registerRequest);
 			return ResponseEntity
 					.status(HttpStatus.CREATED)
@@ -35,7 +37,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest) {
+	public ResponseEntity<LoginResponse> loginUser(@Valid @RequestBody LoginRequest loginRequest) {
 		LoginResponse loginResponse = service.loginUser(loginRequest);
 			return ResponseEntity
 					.status(HttpStatus.OK)
